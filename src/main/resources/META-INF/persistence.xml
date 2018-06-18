@@ -15,7 +15,7 @@
             <property name="hibernate.connection.username" value="postgres"/>
             <property name="hibernate.connection.password" value="postgres1"/>
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/hibernateProject"/>
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.default_schema" value="public"/>
 
             <property name="show_sql" value="true"/>

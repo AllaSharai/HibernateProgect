@@ -1,11 +1,13 @@
 package com.alla.sharai.domain;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -13,26 +15,25 @@ import javax.persistence.Table;
 public class User {
 
     @Id
+    @SequenceGenerator(name = "user_SEQUENCE", sequenceName = "user_id_seq" )
     @GeneratedValue
     private int id;
     private String firstName;
     private String lastName;
 
-    @OneToOne
-    private Adress adress;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
 
-    @OneToMany
-    private List<Role> roles;
-
-    @OneToMany
-    private List<Book> books;
+    @OneToMany(cascade = CascadeType.DETACH)
+    private List<Book> rentedBooks;
 
     public User() {
     }
 
-    public User(String firstName, String lastName) {
+    public User(String firstName, String lastName, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.address = address;
     }
 
     public int getId() {
@@ -43,7 +44,7 @@ public class User {
         this.id = id;
     }
 
-    public String getFirstNameame() {
+    public String getFirstName() {
         return firstName;
     }
 
@@ -57,5 +58,21 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public List<Book> getRentedBooks() {
+        return rentedBooks;
+    }
+
+    public void setRentedBooks(List<Book> rentedBooks) {
+        this.rentedBooks = rentedBooks;
     }
 }

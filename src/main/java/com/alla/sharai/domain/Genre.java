@@ -1,9 +1,9 @@
 package com.alla.sharai.domain;
 
-import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -11,11 +11,10 @@ import javax.persistence.Table;
 public class Genre {
 
     @Id
+    @SequenceGenerator(name = "genre_SEQUENCE", sequenceName = "genre_id_seq" )
+    @GeneratedValue
     private int id;
-    String genre;
-
-    @OneToMany
-    private List<Book> bookGenres;
+    String name;
 
 
     public int getId() {
@@ -26,11 +25,12 @@ public class Genre {
         this.id = id;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getName() {
+        return name;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setName(String genre) {
+        this.name = genre;
     }
+
 }

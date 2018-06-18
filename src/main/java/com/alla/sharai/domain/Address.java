@@ -1,18 +1,27 @@
 package com.alla.sharai.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table
-public class Adress {
+public class Address {
 
     @Id
+    @SequenceGenerator(name = "address_SEQUENCE", sequenceName = "address_id_seq" )
+    @GeneratedValue
     private int id;
     private String city;
     private String street;
     private int number;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "address")
+    private User user;
 
     public int getId() {
         return id;

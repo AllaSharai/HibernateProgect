@@ -1,10 +1,11 @@
 package com.alla.sharai.domain;
 
-import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -12,16 +13,13 @@ import javax.persistence.Table;
 public class Book {
 
     @Id
+    @SequenceGenerator(name = "book_SEQUENCE", sequenceName = "book_id_seq" )
+    @GeneratedValue
     private int id;
-    String title;
-    String autor;
-    String genre;
+    private String title;
 
-    @OneToMany
-    private List<Genre> genresOfBook;
-
-    @ManyToMany
-    private List<Autors> bookAutors;
+    @ManyToOne(cascade = CascadeType.DETACH)
+    private Genre genres;
 
     public int getId() {
         return id;
@@ -39,19 +37,11 @@ public class Book {
         this.title = title;
     }
 
-    public String getAutor() {
-        return autor;
+    public Genre getGenres() {
+        return genres;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setGenres(Genre genres) {
+        this.genres = genres;
     }
 }
