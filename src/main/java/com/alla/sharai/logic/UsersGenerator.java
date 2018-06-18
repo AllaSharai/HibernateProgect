@@ -31,6 +31,7 @@ public class UsersGenerator {
         return users;
     }
 
+
     private Address generateAddress() {
         Address address = new Address();
         address.setStreet(getRandomStreetName());

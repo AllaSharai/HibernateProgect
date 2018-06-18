@@ -16,7 +16,7 @@ public class User {
 
     @Id
     @SequenceGenerator(name = "user_SEQUENCE", sequenceName = "user_id_seq" )
-    @GeneratedValue
+    @GeneratedValue(generator = "user_SEQUENCE" )
     private int id;
     private String firstName;
     private String lastName;

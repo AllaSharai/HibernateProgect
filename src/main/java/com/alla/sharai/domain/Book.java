@@ -14,12 +14,21 @@ public class Book {
 
     @Id
     @SequenceGenerator(name = "book_SEQUENCE", sequenceName = "book_id_seq" )
-    @GeneratedValue
+    @GeneratedValue(generator = "book_SEQUENCE" )
     private int id;
     private String title;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.PERSIST})
     private Genre genres;
+
+    public Book() {
+
+    }
+
+    public Book(String title, Genre genre){
+        this.title = title;
+        this.genres = genre;
+    }
 
     public int getId() {
         return id;
@@ -41,7 +50,7 @@ public class Book {
         return genres;
     }
 
-    public void setGenres(Genre genres) {
+    public void setGenres(String randomGenres) {
         this.genres = genres;
     }
 }

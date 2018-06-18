@@ -11,17 +11,24 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Autor {
+public class Author {
 
     @Id
     @SequenceGenerator(name = "autor_SEQUENCE", sequenceName = "autor_id_seq" )
-    @GeneratedValue
+    @GeneratedValue(generator = "autor_SEQUENCE" )
     private int id;
-    String firstName;
-    String lastName;
+    String name;
 
-    @ManyToMany(cascade = CascadeType.DETACH)
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.PERSIST})
     private List<Book> books;
+
+    public Author() {
+
+    }
+
+    public Author(String name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;
@@ -31,20 +38,12 @@ public class Autor {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Book> getBooks() {

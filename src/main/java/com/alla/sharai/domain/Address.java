@@ -14,7 +14,7 @@ public class Address {
 
     @Id
     @SequenceGenerator(name = "address_SEQUENCE", sequenceName = "address_id_seq" )
-    @GeneratedValue
+    @GeneratedValue(generator = "address_SEQUENCE" )
     private int id;
     private String city;
     private String street;

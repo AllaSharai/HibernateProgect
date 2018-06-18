@@ -11,11 +11,18 @@ import javax.persistence.Table;
 public class Genre {
 
     @Id
-    @SequenceGenerator(name = "genre_SEQUENCE", sequenceName = "genre_id_seq" )
-    @GeneratedValue
+    @SequenceGenerator(name = "genre_SEQUENCE", sequenceName = "genre_id_seq")
+    @GeneratedValue(generator = "genre_SEQUENCE")
     private int id;
     String name;
 
+    public Genre() {
+
+    }
+
+    public Genre(String name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;
