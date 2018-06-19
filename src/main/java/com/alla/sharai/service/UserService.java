@@ -33,11 +33,12 @@ public class UserService {
         return user;
     }
 
-    public void delete(int id) {
+    public User delete(int id) {
         userDao.openCurrentSessionWithTransaction();
         User user = userDao.findById(id);
         userDao.delete(user);
         userDao.closeCurrentSessionWithTransaction();
+        return user;
     }
 
     public List<User> findAll() {
@@ -53,9 +54,10 @@ public class UserService {
         userDao.closeCurrentSessionWithTransaction();
     }
 
-    public void rentBook(int id, Book book) {
+    public void rentBook(User user, Book book) {
         userDao.openCurrentSessionWithTransaction();
-        userDao().rentBook(id, book);
+        user.getRentedBooks().add(book);
+        userDao().rentBook(user.getId(), book);
         userDao.closeCurrentSessionWithTransaction();
     }
 

@@ -56,4 +56,13 @@ public class Book {
     public void setGenres(String randomGenres) {
         this.genres = genres;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "\nid=" + id +
+                ",\ntitle='" + title + '\'' +
+                ",\ngenres=" + genres +
+                '}';
+    }
 }

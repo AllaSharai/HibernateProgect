@@ -40,4 +40,11 @@ public class Genre {
         this.name = genre;
     }
 
+    @Override
+    public String toString() {
+        return "Genre{" +
+                "\n\tid=" + id +
+                ",\n\tname='" + name + '\'' +
+                '}';
+    }
 }

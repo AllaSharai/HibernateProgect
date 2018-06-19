@@ -1,8 +1,10 @@
 package com.alla.sharai.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,8 +27,8 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    @OneToMany(cascade = CascadeType.DETACH)
-    private List<Book> rentedBooks;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    private List<Book> rentedBooks = new ArrayList<>();
 
     public User() {
     }
@@ -75,5 +77,16 @@ public class User {
 
     public void setRentedBooks(List<Book> rentedBooks) {
         this.rentedBooks = rentedBooks;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "\n\tid=" + id +
+                ",\n\tfirstName='" + firstName + '\'' +
+                ",\n\tlastName='" + lastName + '\'' +
+                ",\n\taddress=" + address +
+                ",\n\trentedBooks=" + rentedBooks +
+                '}';
     }
 }

@@ -61,7 +61,7 @@ public class BookService {
         return bookDao;
     }
 
-    public List<Genre> getGenesList() {
+    public List<Genre> getGenresList() {
         genreDao.openCurrentSession();
         List<Genre> genres = genreDao.findAll();
         genreDao.closeCurrentSession();

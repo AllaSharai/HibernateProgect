@@ -22,7 +22,7 @@ class BookGenerator {
     private final BookService bookService = new BookService();
 
     BookGenerator() {
-        this.genres = bookService.getGenesList();
+        this.genres = bookService.getGenresList();
     }
 
 

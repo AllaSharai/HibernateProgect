@@ -54,4 +54,14 @@ public class Address {
     public void setNumber(int number) {
         this.number = number;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "\nid=" + id +
+                ",\ncity='" + city + '\'' +
+                ",\nstreet='" + street + '\'' +
+                ",\nnumber=" + number +
+                '}';
+    }
 }
