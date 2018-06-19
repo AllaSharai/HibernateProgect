@@ -18,11 +18,14 @@ public class Book {
     private int id;
     private String title;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.DETACH})
     private Genre genres;
 
     public Book() {
+    }
 
+    public void setGenres(Genre genres) {
+        this.genres = genres;
     }
 
     public Book(String title, Genre genre){

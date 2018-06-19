@@ -1,6 +1,6 @@
 package com.alla.sharai.dao;
 
-import com.alla.sharai.domain.Address;
+import com.alla.sharai.domain.Genre;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,7 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-public class AddressDao implements DaoInterface<Address> {
+public class GenreDao implements DaoInterface<Genre> {
 
     private Session currentSession;
 
@@ -58,32 +58,36 @@ public class AddressDao implements DaoInterface<Address> {
     }
 
     @Override
-    public void persist(Address entity) {
-
+    public void persist(Genre entity) {
+        getCurrentSession().save(entity);
     }
 
     @Override
-    public void update(Address entity) {
-
+    public void update(Genre entity) {
+        getCurrentSession().update(entity);
     }
 
     @Override
-    public Address findById(int id) {
-        return null;
+    public Genre findById(int id) {
+        return (Genre) getCurrentSession().get(Genre.class, id);
     }
 
     @Override
-    public void delete(Address entity) {
-
+    public void delete(Genre entity) {
+        getCurrentSession().delete(entity);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public List<Address> findAll() {
-        return null;
+    public List<Genre> findAll() {
+        return getCurrentSession().createQuery("from Genre").list();
     }
 
     @Override
     public void deleteAll() {
-
+        List<Genre> genres = findAll();
+        for (Genre genre : genres) {
+            delete(genre);
+        }
     }
 }

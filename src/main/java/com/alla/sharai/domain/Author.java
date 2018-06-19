@@ -1,5 +1,6 @@
 package com.alla.sharai.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,13 +15,13 @@ import javax.persistence.Table;
 public class Author {
 
     @Id
-    @SequenceGenerator(name = "autor_SEQUENCE", sequenceName = "autor_id_seq" )
-    @GeneratedValue(generator = "autor_SEQUENCE" )
+    @SequenceGenerator(name = "autor_SEQUENCE", sequenceName = "autor_id_seq")
+    @GeneratedValue(generator = "autor_SEQUENCE")
     private int id;
     String name;
 
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.PERSIST})
-    private List<Book> books;
+    @ManyToMany(cascade = {CascadeType.ALL})
+    private List<Book> books = new ArrayList<>();
 
     public Author() {
 

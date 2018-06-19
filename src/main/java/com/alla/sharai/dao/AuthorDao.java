@@ -1,6 +1,6 @@
 package com.alla.sharai.dao;
 
-import com.alla.sharai.domain.Address;
+import com.alla.sharai.domain.Author;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,8 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-public class AddressDao implements DaoInterface<Address> {
-
+public class AuthorDao implements DaoInterface<Author> {
     private Session currentSession;
 
     private Transaction currentTransaction;
@@ -58,32 +57,36 @@ public class AddressDao implements DaoInterface<Address> {
     }
 
     @Override
-    public void persist(Address entity) {
-
+    public void persist(Author entity) {
+        getCurrentSession().save(entity);
     }
 
     @Override
-    public void update(Address entity) {
-
+    public void update(Author entity) {
+        getCurrentSession().update(entity);
     }
 
     @Override
-    public Address findById(int id) {
-        return null;
+    public Author findById(int id) {
+        return (Author) getCurrentSession().get(Author.class, id);
     }
 
     @Override
-    public void delete(Address entity) {
-
+    public void delete(Author entity) {
+        getCurrentSession().delete(entity);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public List<Address> findAll() {
-        return null;
+    public List<Author> findAll() {
+        return (List<Author>) getCurrentSession().createQuery("from Author").list();
     }
 
     @Override
     public void deleteAll() {
-
+        List<Author> authors = findAll();
+        for (Author author : authors) {
+            delete(author);
+        }
     }
 }

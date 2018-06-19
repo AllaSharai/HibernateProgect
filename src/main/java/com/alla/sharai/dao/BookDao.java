@@ -1,6 +1,6 @@
 package com.alla.sharai.dao;
 
-import com.alla.sharai.domain.Address;
+import com.alla.sharai.domain.Book;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,7 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-public class AddressDao implements DaoInterface<Address> {
+public class BookDao implements DaoInterface<Book> {
 
     private Session currentSession;
 
@@ -58,32 +58,36 @@ public class AddressDao implements DaoInterface<Address> {
     }
 
     @Override
-    public void persist(Address entity) {
-
+    public void persist(Book entity) {
+        getCurrentSession().save(entity);
     }
 
     @Override
-    public void update(Address entity) {
-
+    public void update(Book entity) {
+        getCurrentSession().update(entity);
     }
 
     @Override
-    public Address findById(int id) {
-        return null;
+    public Book findById(int id) {
+        return (Book) getCurrentSession().get(Book.class, id);
     }
 
     @Override
-    public void delete(Address entity) {
-
+    public void delete(Book entity) {
+        getCurrentSession().delete(entity);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public List<Address> findAll() {
-        return null;
+    public List<Book> findAll() {
+        return (List<Book>) getCurrentSession().createQuery("from Book").list();
     }
 
     @Override
     public void deleteAll() {
-
+        List<Book> books = findAll();
+        for (Book entity : books) {
+            delete(entity);
+        }
     }
 }
