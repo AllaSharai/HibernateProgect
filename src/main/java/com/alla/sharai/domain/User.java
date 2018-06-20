@@ -81,7 +81,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "\n\n\tUser{" +
                 "\n\tid=" + id +
                 ",\n\tfirstName='" + firstName + '\'' +
                 ",\n\tlastName='" + lastName + '\'' +

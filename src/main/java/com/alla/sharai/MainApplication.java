@@ -1,9 +1,10 @@
 package com.alla.sharai;
 
-import com.alla.sharai.domain.Book;
+import com.alla.sharai.domain.User;
 import com.alla.sharai.service.AuthorService;
 import com.alla.sharai.service.BookService;
 import com.alla.sharai.service.UserService;
+import java.util.List;
 
 public class MainApplication {
 
@@ -14,19 +15,26 @@ public class MainApplication {
     private static final BookService bookService = new BookService();
 
 
+
+
     public static void main(String[] args) {
         //readAuthor();
         //readUser();
         //deleteUser();
         //findAllUsers();
-        findBook();
+        //findBook();
+        findByFirstName();
     }
 
-    private static void findBook(){
-        Book book = bookService.findById(53);
-        System.out.println("Get book with id 53 " + book);
-
+    private  static void findByFirstName(){
+        List<User> user = userService.findByFirstName("Franz");
+        System.out.println("Get user with name Franz:  " + user);
     }
+//    private static void findBook(){
+//        Book book = bookService.findById(53);
+//        System.out.println("Get book with id 53 " + book);
+//
+//    }
 
 //    private static void findAllUsers(){
 //        List<User> userList =  userService.findAll();
@@ -46,6 +54,8 @@ public class MainApplication {
 //
 //
 //    }
+
+
 
 //    private static void readAuthor() {
 //        Author author = authorService.findById(11);

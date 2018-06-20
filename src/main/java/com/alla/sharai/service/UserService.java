@@ -64,4 +64,11 @@ public class UserService {
     public UserDao userDao() {
         return userDao;
     }
+
+    public List<User> findByFirstName(String firstName ) {
+        userDao.openCurrentSession();
+        List<User> users = userDao.findByFirstName(firstName);
+        userDao.closeCurrentSession();
+        return users;
+    }
 }

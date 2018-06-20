@@ -3,11 +3,13 @@ package com.alla.sharai.dao;
 import com.alla.sharai.domain.Book;
 import com.alla.sharai.domain.User;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 
 public class UserDao implements DaoInterface<User>{
 
@@ -97,4 +99,13 @@ public class UserDao implements DaoInterface<User>{
         user.getRentedBooks().add(book);
         update(user);
     }
+
+
+    public List<User> findByFirstName(String firstname) {
+        Criteria criteria = getCurrentSession().createCriteria(User.class);
+        criteria.add(Restrictions.eq("firstName", firstname));
+        List<User> users = (List<User>) criteria.list();
+        return users;
+    }
+
 }
